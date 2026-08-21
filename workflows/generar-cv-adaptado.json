@@ -1,0 +1,831 @@
+{
+  "name": "Generar CV adaptado GO",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "cvs_base",
+              "type": "object",
+              "value": "={\"Administrativo\": \"Franco Clerici\\nAsistente Administrativo | Soporte y Gestión de Datos\\nfrancoclerici05@gmail.com | +54 11 6509 6263 | Almagro, CABA, Argentina\\nPERFIL\\nEstudiante de Ingeniería en Sistemas (UTN) y Técnico en Electrónica, con experiencia en tareas administrativas y de gestión\\nde datos. Manejo sólido de Excel, sistemas informáticos y organización de la información. Persona proactiva, ordenada y\\ncon excelente comunicación: fui convocado para dictar clases, lo que refleja mi facilidad para explicar, atender y trabajar\\ncon personas. Busco sumarme al área administrativa o de soporte de una empresa de tecnología para aportar desde el\\nprimer día y seguir creciendo profesionalmente.\\nEXPERIENCIA\\nAsistente de Inventario y Control de Stock\\nDASTEC S.R.L.\\n● Relevamiento y carga de productos mediante lectura de códigos de barra, registrando cada ítem en planillas de\\nExcel con precisión y atención al detalle.\\n● Organización y categorización del stock por tipo de producto, manteniendo la información ordenada y accesible.\\n● Tareas administrativas de control de inventario, asegurando consistencia entre el stock físico y los registros.\\nFORMACIÓN ACADÉMICA\\nIngeniería en Sistemas de Información 2024 – Presente\\nUniversidad Tecnológica Nacional (UTN) — cursando 2° año\\nDiplomatura en Bases de Datos Egresado 2025\\nUTN Centro de e-Learning\\nTécnico en Electrónica Egresado 2023\\nEscuela Técnica PIO IX\\nHABILIDADES\\n● Ofimática: Excel (planillas, carga y control de datos), Microsoft 365, Word.\\n● Sistemas: manejo de sistemas informáticos, Windows, bases de datos, nociones de gestión de stock/inventario.\\n● Personales: comunicación clara, proactividad, orden, atención al detalle, trabajo en equipo y trato con personas.\\n● Idiomas: Español (nativo). Inglés B2 (Upper-Intermediate).\\nINFORMACIÓN ADICIONAL\\n● Disponibilidad horaria de día (compatible con cursada nocturna 19–22 hs).\\n● Residencia: Almagro, CABA. Disponibilidad inmediata.\\n● Convocado para dictar clases, lo que refleja capacidad de comunicación y enseñanza.\", \"Soporte Tecnico\": \"Franco Clerici\\nSoporte Técnico IT | Help Desk\\nfrancoclerici05@gmail.com | linkedin.com/in/francoclerici | github.com/Gercle | Buenos Aires, Argentina\\nPERFIL\\nTécnico en Electrónica egresado con sólida base en hardware, diagnóstico de equipos y sistemas. Estudiante de Ingeniería\\nen Sistemas (UTN, 2° año) con conocimientos en Windows, Microsoft 365, bases de datos y programación. Orientado al\\nservicio al usuario, con capacidad analítica para resolver incidencias técnicas de forma ordenada y documentada. Busco mi\\nprimer rol en soporte IT para crecer dentro de un equipo de sistemas.\\nHABILIDADES TÉCNICAS\\n• Hardware: electrónica digital y analógica · diagnóstico y reparación de equipos · Técnico Electrónico egresado\\n• Sistemas Operativos: Windows 10/11 · Microsoft 365 · línea de comandos · Linux (introductorio, UTN)\\n• Redes: TCP/IP · conceptos de redes y sistemas distribuidos (UTN)\\n• Bases de datos: MySQL · SQL Server · SQLite · Diplomatura en Bases de Datos UTN 2025\\n• Programación: Python · Java · JavaScript · C++ · SQL\\n• Herramientas: Git · GitHub · Postman · GitHub Actions\\nEXPERIENCIA\\nAsistente de Inventario y Control de Stock\\nDASTEC S.R.L.\\n• Relevamiento y carga de productos mediante lectura de códigos de barra, registrando cada ítem en planillas de Excel.\\n• Organización y categorización del stock por tipo de producto, manteniendo la información ordenada y accesible.\\n• Control de inventario, asegurando consistencia entre el stock físico y los registros.\\nPROYECTOS RELEVANTES\\nAPI REST para Gestión Financiera — Node.js · MySQL · JWT · MVC (2025)\\nDiseño, desarrollo y documentación de una API backend con autenticación, manejo de errores y optimización de consultas\\nSQL.\\nEDUCACIÓN\\nIngeniería en Sistemas de Información — UTN (cursando 2° año)\\nDiplomatura en Bases de Datos — UTN Centro de e-Learning (2025)\\nTécnico en Electrónica — Escuela Técnica PIO IX (2023)\\nIDIOMAS\\nEspañol: Nativo — Inglés: B2 (Upper-Intermediate)\", \"Programacion\": \"Franco Clerici\\nDesarrollador Backend Junior | Estudiante de Ingeniería en Sistemas (UTN)\\nfrancoclerici05@gmail.com | linkedin.com/in/francoclerici | github.com/Gercle | Buenos Aires, Argentina\\nPERFIL\\nDesarrollador con base sólida en backend (Java, Node.js, Python), diseño de bases de datos relacionales y arquitectura de\\nsistemas. Construí una API financiera completa con autenticación JWT, gestión de transacciones y optimización de queries\\ncon mejora del 40% en tiempos de respuesta. Experiencia con automatización (GitHub Actions, Python), entornos cloud\\n(Docker/Linux) y seguridad en APIs. Estudiante de Ingeniería en Sistemas en UTN (2° año), con Diplomatura en Bases de\\nDatos completada (2025).\\nPROYECTOS\\nFinance API — Sistema de Gestión Financiera\\nNode.js · MySQL · JWT · Clean Architecture · MVC — 2025\\n• API REST para gestión financiera: usuarios, categorías, transacciones e ingresos con autenticación JWT y control de\\nacceso por roles.\\n• Optimización de queries mediante índices y relaciones normalizadas — mejora del 40% en tiempos de respuesta.\\n• Constraints de integridad referencial y validaciones multicapa para garantizar consistencia de datos.\\nMelimarket — Marketplace con control transaccional\\nNode.js · Java/Spring Boot · MySQL · React · JWT — 2025\\n• Control de concurrencia en órdenes: transacciones SQL con bloqueo optimista para evitar inconsistencias ante compras\\nsimultáneas.\\n• Worker asíncrono en Java/Spring Boot que procesa eventos de pagos y órdenes de forma desacoplada.\\n• Seguridad en APIs: JWT con roles, rate limiting, CORS restringido y pipeline CI/CD con GitHub Actions.\\nHABILIDADES TÉCNICAS\\n• Backend: Java · Spring Boot · Node.js · Express · Python · REST APIs · JWT · Clean Architecture\\n• Bases de datos: MySQL · SQL Server · Prisma ORM · optimización SQL · normalización (Diplomatura UTN 2025)\\n• Cloud & Automatización: Docker · Linux · GitHub Actions (CI/CD) · Python scripting · workers asincrónicos\\n• Lenguajes: Java · JavaScript · TypeScript · Python · C++ · SQL\\nEDUCACIÓN\\nIngeniería en Sistemas de Información — UTN (cursando 2° año, 2024–Presente)\\nDiplomatura en Bases de Datos — UTN Centro de e-Learning (2025)\\nTécnico en Electrónica — Escuela Técnica PIO IX (2023)\\nIDIOMAS\\nEspañol: Nativo — Inglés: B2 (Upper-Intermediate)\"}",
+              "id": "c49c0b4d-2e99-42b3-ac91-3259505c653b"
+            },
+            {
+              "id": "5782ab38-f451-4da4-9f76-1057c329a81c",
+              "name": "telegram_bot_token",
+              "value": "={{ $env.TELEGRAM_BOT_TOKEN }}",
+              "type": "string"
+            },
+            {
+              "id": "9d3ff887-fc49-477a-af71-eb0cd2e8c26e",
+              "name": "telegram_chat_id",
+              "value": "={{ $env.TELEGRAM_CHAT_ID }}",
+              "type": "string"
+            },
+            {
+              "id": "e96d1425-dbe6-4df8-bb12-195fc87a0d87",
+              "name": "opencode_api_key",
+              "value": "={{ $env.OPENCODE_API_KEY }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "58585fd9-9751-44d2-b526-e6f6946b4b09",
+      "name": "Config (API key + CVs base)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        0
+      ],
+      "notes": "Los 3 valores (token de Telegram, chat id y API key de OpenCode) se leen de variables de entorno (TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, OPENCODE_API_KEY) definidas en tu .env / docker-compose -> nunca quedan pegadas en este JSON. Los 3 CVs base siguen cargados como texto; si actualizas un CV, actualizalo aca tambien."
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0",
+          "mode": "list",
+          "cachedResultName": "n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Ofertas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "b418664f-9d93-468c-a972-7529edea827c",
+      "name": "Leer planilla",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        448,
+        0
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aauUj87wyIwRfsy",
+          "name": "Google Sheets account"
+        }
+      },
+      "notes": "Elegi tu planilla y la hoja 'Ofertas' desde la lista. Activa Execute Once y Always Output Data en Settings."
+    },
+    {
+      "parameters": {
+        "jsCode": "const cfg = $('Config (API key + CVs base)').first().json;\nconst out = [];\nfor (const item of $input.all()) {\n  const j = item.json;\n  const g = j.generar;\n  const marcada = g === true || g === 1 ||\n    ['true', 'x', '✓', 'verdadero', 'si', 'sí', '1']\n      .includes(String(g ?? '').trim().toLowerCase());\n  const yaTiene = String(j.cv_adaptado || '').trim().length > 0;\n  if (!marcada || yaTiene || !j.url) continue;\n  const cvBase = cfg.cvs_base[j.perfil_sugerido] || cfg.cvs_base['Administrativo'];\n  out.push({ json: { ...j, cv_base: cvBase } });\n}\nreturn out;"
+      },
+      "id": "ecb7f463-18ec-43f9-80c2-8bc28c602d11",
+      "name": "Filas marcadas con X",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        0
+      ],
+      "alwaysOutputData": false,
+      "notes": "Marca una fila poniendo una X en la columna 'generar'. Las que ya tienen cv_adaptado se saltean."
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d2a8acf5-9d95-4354-9a13-8d71836e60dc",
+      "name": "Loop ofertas",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        880,
+        0
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+            },
+            {
+              "name": "Accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "es-AR,es;q=0.9,en;q=0.8"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.google.com/"
+            },
+            {
+              "name": "Upgrade-Insecure-Requests",
+              "value": "1"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          },
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "c4521382-7362-453d-9c54-773709fb018b",
+      "name": "Traer descripcion de la oferta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1120,
+        16
+      ],
+      "notes": "Abre la oferta para leer los requisitos. neverError activado: si falla, sigue igual con solo el titulo."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Limpia el HTML de la oferta y arma el prompt para la IA\nconst ctx = $('Loop ofertas').item.json;\nconst raw = $input.first().json.data || $input.first().json.body || '';\n\nlet desc = String(raw)\n  .replace(/<script[\\s\\S]*?<\\/script>/gi, ' ')\n  .replace(/<style[\\s\\S]*?<\\/style>/gi, ' ')\n  .replace(/<[^>]*>/g, ' ')\n  .replace(/&nbsp;/g, ' ')\n  .replace(/&#x([0-9A-Fa-f]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)))\n  .replace(/&#(\\d+);/g, (_, d) => String.fromCharCode(parseInt(d, 10)))\n  .replace(/&amp;/g, '&')\n  .replace(/\\s+/g, ' ')\n  .trim()\n  .slice(0, 6000);\n\nif (desc.length < 200) desc = '(No se pudo leer la descripcion completa de la oferta.)';\n\nconst prompt = [\n  'Sos un experto en adaptar CVs para pasar filtros ATS en busquedas laborales en Argentina.',\n  '',\n  'QUE SI TENES QUE HACER:',\n  '- Usar la terminologia EXACTA de la oferta para describir lo que el candidato ya hizo.',\n  '  Ejemplo: si el CV dice \"carga de productos con lector de codigo de barras\" y la oferta',\n  '  pide \"gestion de inventario\", escribilo como \"gestion de inventario\". Es el mismo hecho,',\n  '  dicho con la palabra que busca el ATS.',\n  '- Meter las keywords de la oferta que se correspondan con algo real del CV base.',\n  '- Reordenar y priorizar: primero lo que mas matchea con esta oferta.',\n  '- Reescribir el PERFIL (3-4 lineas) apuntado a este puesto puntual.',\n  '',\n  'QUE NO PODES HACER:',\n  '- Inventar experiencia, empresas, titulos, certificaciones o anios que no esten en el CV base.',\n  '- Agregar tecnologias o herramientas que el candidato nunca uso.',\n  '- Inflar la duracion de un trabajo o el nivel de un idioma.',\n  'Regla: cada afirmacion del CV adaptado tiene que poder defenderse en una entrevista.',\n  '',\n  '=== CV BASE DEL CANDIDATO ===',\n  ctx.cv_base,\n  '',\n  '=== OFERTA ===',\n  'Puesto: ' + (ctx.titulo || ''),\n  'Empresa: ' + (ctx.empresa || ''),\n  'Ubicacion: ' + (ctx.ubicacion || ''),\n  'Descripcion: ' + desc,\n  '',\n  '=== FORMATO DE SALIDA (seguilo exacto, se usa despues para darle diseño al documento) ===',\n  'Linea 1: TITULO: Nombre Apellido | Rol/titulo profesional para este puesto',\n  'Linea 2: CONTACTO: email | telefono | ubicacion',\n  'Una linea en blanco.',\n  'Despues, por cada seccion del CV base (PERFIL, EXPERIENCIA o PROYECTOS, FORMACION o EDUCACION, HABILIDADES, IDIOMAS, INFORMACION ADICIONAL, las que tenga):',\n  '  - Una linea: SECCION: NOMBRE DE LA SECCION EN MAYUSCULAS',\n  '  - Despues el contenido: parrafos normales en lineas simples, y para logros/tareas/listas de habilidades una linea por punto empezando con \"- \".',\n  '  - Una linea en blanco antes de la siguiente SECCION.',\n  'No uses markdown (nada de **, #, *, backticks). No agregues explicaciones ni comentarios, devolve unicamente el CV en ese formato de lineas.'\n].join('\\n');\n\nreturn [{ json: { ...ctx, prompt, desc_len: desc.length, desc } }];"
+      },
+      "id": "6a362fb4-bde6-42b1-b738-55e51c4d2b15",
+      "name": "Armar prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1328,
+        16
+      ],
+      "notes": "El prompt le pide adaptar el vocabulario a las keywords de la oferta (para el ATS), le prohibe inventar experiencia, y le pide un formato de lineas con marcadores (TITULO:/CONTACTO:/SECCION:/\"- \") que el nodo 'Armar formato del Doc' despues traduce a negrita/tamaños/bullets reales en el Google Doc."
+    },
+    {
+      "parameters": {
+        "jsCode": "const inp = $input.first().json;\nconst cfg = $('Config (API key + CVs base)').first().json;\nconst prompt = inp.prompt;\n\nlet texto = '';\nlet goErr = '';\ntry {\n  const resp = await this.helpers.httpRequest({\n    method: 'POST',\n    url: 'https://opencode.ai/zen/go/v1/messages',\n    headers: {\n      'x-api-key': cfg.opencode_api_key,\n      'anthropic-version': '2023-06-01',\n      'content-type': 'application/json'\n    },\n    body: {\n      model: 'minimax-m3',\n      max_tokens: 2000,\n      messages: [{ role: 'user', content: prompt }]\n    },\n    json: true\n  });\n  texto = (resp.content || [])\n    .filter(c => c.type === 'text')\n    .map(c => c.text || '')\n    .join('')\n    .trim();\n  if (!texto) goErr = 'Go sin texto: ' + JSON.stringify(resp).slice(0, 200);\n} catch (e) {\n  goErr = (e.message || String(e)).slice(0, 200);\n}\n\nif (!texto) {\n  texto = 'ERROR al generar: ' + (goErr || 'sin respuesta de la IA');\n}\n\nreturn [{ json: { url: inp.url, cv_adaptado: texto } }];"
+      },
+      "id": "46528c3d-4707-4fda-8897-7d9c474bc633",
+      "name": "Extraer texto del CV",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        16
+      ],
+      "notes": "Si algo falla, escribe el error en la celda en vez de romper el workflow, asi ves que paso."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://docs.googleapis.com/v1/documents",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDocsOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ title: ('CV - ' + ($('Loop ofertas').item.json.titulo || 'oferta') + ' - ' + ($('Loop ofertas').item.json.empresa || '')).slice(0, 120) }) }}",
+        "options": {}
+      },
+      "id": "e85a7468-923e-4698-aed9-4d684ce2aaeb",
+      "name": "Crear Google Doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2496,
+        16
+      ],
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "3H2Ad9jhNyIDzYNF",
+          "name": "Google Docs account"
+        }
+      },
+      "notes": "Crea el documento vacio en la raiz de tu Drive. Necesita la credencial 'Google Docs OAuth2 API' y la Google Docs API habilitada en el proyecto de Google Cloud."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://docs.googleapis.com/v1/documents/{{ $json.documentId }}:batchUpdate",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDocsOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ requests: $json.requests }) }}",
+        "options": {}
+      },
+      "id": "55bb13b3-4613-473b-9531-465ef37c5e9d",
+      "name": "Escribir CV en el Doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2864,
+        16
+      ],
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "3H2Ad9jhNyIDzYNF",
+          "name": "Google Docs account"
+        }
+      },
+      "notes": "Manda el insertText + todos los requests de formato en un solo batchUpdate."
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Loop ofertas').item.json;\nconst docId = $('Crear Google Doc').item.json.documentId;\nconst scoring = $('Extraer nuevo match').item.json;\nreturn [{ json: {\n  url: ctx.url,\n  titulo: ctx.titulo,\n  empresa: ctx.empresa,\n  cv_adaptado: 'https://docs.google.com/document/d/' + docId + '/edit',\n  match_pct: scoring.match_pct,\n  ats_tip: scoring.ats_tip\n}}];"
+      },
+      "id": "2a9846e1-8a7f-45cb-9ad8-bb0656dac242",
+      "name": "Armar link del Doc",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        16
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0",
+          "mode": "list",
+          "cachedResultName": "n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Ofertas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "url"
+          ],
+          "schema": [
+            {
+              "id": "notificado",
+              "displayName": "notificado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "perfil_sugerido",
+              "displayName": "perfil_sugerido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fuente",
+              "displayName": "fuente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "titulo",
+              "displayName": "titulo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "empresa",
+              "displayName": "empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ubicacion",
+              "displayName": "ubicacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "keyword_busqueda",
+              "displayName": "keyword_busqueda",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fecha_deteccion",
+              "displayName": "fecha_deteccion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fecha_postulacion",
+              "displayName": "fecha_postulacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "generar",
+              "displayName": "generar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "cv_adaptado",
+              "displayName": "cv_adaptado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "match_pct",
+              "displayName": "match_pct",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ats_tip",
+              "displayName": "ats_tip",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "27bde6c0-7b39-4f3e-95a5-9abcba62f4d9",
+      "name": "Guardar link en la fila",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3360,
+        16
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aauUj87wyIwRfsy",
+          "name": "Google Sheets account"
+        }
+      },
+      "notes": "Mapping Column Mode = Map Automatically. Column to match on = url."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Convierte el CV con marcadores (TITULO:/CONTACTO:/SECCION:/\"- \") en:\n//  1) el texto plano final (fullText) que se inserta de una sola vez en el Doc\n//  2) la lista de requests de formato (negrita, tamaños, bullets) de la Google Docs API,\n//     calculados con los indices exactos de caracteres dentro de fullText.\n// Todo se manda en UN solo batchUpdate: primero el insertText, y como ese request se\n// ejecuta primero, los requests de formato de ahi en mas ya pueden usar indices fijos.\n\nconst docId = $('Crear Google Doc').item.json.documentId;\nconst raw = ($('Extraer texto del CV').item.json.cv_adaptado || '').replace(/\\r\\n/g, '\\n');\nconst lineasRaw = raw.split('\\n');\n\nlet fullText = '';\nconst segmentos = []; // {start, end, tipo}\nlet bulletBuffer = null;\n\nfunction agregar(texto, tipo) {\n  const start = fullText.length;\n  fullText += texto;\n  const end = fullText.length;\n  if (tipo) segmentos.push({ start, end, tipo });\n  return { start, end };\n}\n\nfunction cerrarBullets() {\n  if (bulletBuffer) {\n    segmentos.push({ start: bulletBuffer.start, end: bulletBuffer.end, tipo: 'bullet' });\n    bulletBuffer = null;\n  }\n}\n\nfor (let i = 0; i < lineasRaw.length; i++) {\n  const linea = lineasRaw[i];\n\n  if (/^TITULO:/i.test(linea)) {\n    cerrarBullets();\n    agregar(linea.replace(/^TITULO:\\s*/i, ''), 'titulo');\n    agregar('\\n');\n    continue;\n  }\n  if (/^CONTACTO:/i.test(linea)) {\n    cerrarBullets();\n    agregar(linea.replace(/^CONTACTO:\\s*/i, ''), 'contacto');\n    agregar('\\n');\n    continue;\n  }\n  if (/^SECCION:/i.test(linea)) {\n    cerrarBullets();\n    agregar('\\n');\n    agregar(linea.replace(/^SECCION:\\s*/i, '').trim(), 'seccion');\n    agregar('\\n');\n    continue;\n  }\n  if (/^\\s*-\\s+/.test(linea)) {\n    const texto = linea.replace(/^\\s*-\\s+/, '');\n    const { end } = agregar(texto);\n    agregar('\\n');\n    if (!bulletBuffer) bulletBuffer = { start: end - texto.length };\n    bulletBuffer.end = end + 1;\n    continue;\n  }\n  if (linea.trim() === '') {\n    cerrarBullets();\n    agregar('\\n');\n    continue;\n  }\n  cerrarBullets();\n  agregar(linea, 'body');\n  agregar('\\n');\n}\ncerrarBullets();\n\nif (!fullText.trim()) fullText = '(No se pudo generar el CV, revisar el error en la columna cv_adaptado antes de este paso.)\\n';\n\nconst requests = [\n  { insertText: { location: { index: 1 }, text: fullText } }\n];\n\nfor (const s of segmentos) {\n  const startIndex = s.start + 1;\n  const endIndex = s.end + 1;\n  if (startIndex >= endIndex) continue;\n  const range = { startIndex, endIndex };\n\n  if (s.tipo === 'titulo') {\n    requests.push({ updateTextStyle: { range, textStyle: { bold: true, fontSize: { magnitude: 16, unit: 'PT' } }, fields: 'bold,fontSize' } });\n  } else if (s.tipo === 'contacto') {\n    requests.push({ updateTextStyle: { range, textStyle: { italic: true, fontSize: { magnitude: 9.5, unit: 'PT' }, foregroundColor: { color: { rgbColor: { red: 0.35, green: 0.35, blue: 0.35 } } } }, fields: 'italic,fontSize,foregroundColor' } });\n  } else if (s.tipo === 'seccion') {\n    requests.push({ updateTextStyle: { range, textStyle: { bold: true, fontSize: { magnitude: 12, unit: 'PT' }, foregroundColor: { color: { rgbColor: { red: 0.10, green: 0.25, blue: 0.55 } } } }, fields: 'bold,fontSize,foregroundColor' } });\n    requests.push({ updateParagraphStyle: { range, paragraphStyle: { spaceAbove: { magnitude: 10, unit: 'PT' }, spaceBelow: { magnitude: 3, unit: 'PT' }, borderBottom: { width: { magnitude: 0.5, unit: 'PT' }, padding: { magnitude: 1, unit: 'PT' }, dashStyle: 'SOLID', color: { color: { rgbColor: { red: 0.75, green: 0.75, blue: 0.75 } } } } }, fields: 'spaceAbove,spaceBelow,borderBottom' } });\n  } else if (s.tipo === 'body') {\n    requests.push({ updateTextStyle: { range, textStyle: { fontSize: { magnitude: 10.5, unit: 'PT' } }, fields: 'fontSize' } });\n  } else if (s.tipo === 'bullet') {\n    requests.push({ updateTextStyle: { range, textStyle: { fontSize: { magnitude: 10.5, unit: 'PT' } }, fields: 'fontSize' } });\n    requests.push({ createParagraphBullets: { range, bulletPreset: 'BULLET_DISC_CIRCLE_SQUARE' } });\n  }\n}\n\nreturn [{ json: { documentId: docId, requests } }];"
+      },
+      "id": "58633f5e-4568-407e-894c-5887dfcccf0a",
+      "name": "Armar formato del Doc",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2672,
+        16
+      ],
+      "notes": "Traduce los marcadores TITULO:/CONTACTO:/SECCION:/\"- \" del texto que devolvio la IA en negrita, tamaños de letra y bullets reales de Google Docs. Si la IA no respeta el formato, el CV igual se inserta como texto plano sin romper el workflow."
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "*/10 * * * *"
+            }
+          ]
+        }
+      },
+      "id": "a2cc7f19-c0e9-4934-afb0-2f5c3d1c53a4",
+      "name": "Cada 10 minutos",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "notes": "Revisa la planilla cada 10 min buscando filas marcadas con X en la columna 'generar'."
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Loop ofertas').item.json;\nconst desc = $('Armar prompt').item.json.desc || '';\nconst cvAdaptado = $json.cv_adaptado || '';\n\nconst prompt = [\n  'Sos un evaluador de compatibilidad entre un CV y una oferta laboral.',\n  'Devolve SOLAMENTE un JSON valido, en una sola linea, sin markdown y sin backticks, con este formato exacto:',\n  '{\"match\": <numero entero 0-100>, \"tip\": \"<max 15 palabras: que keyword de la oferta conviene sumar o resaltar en el CV>\"}',\n  '',\n  '=== CV DEL CANDIDATO (version ya adaptada a esta oferta) ===',\n  cvAdaptado,\n  '',\n  '=== OFERTA ===',\n  'Puesto: ' + (ctx.titulo || ''),\n  'Empresa: ' + (ctx.empresa || ''),\n  'Descripcion: ' + desc\n].join('\\n');\n\nreturn [{ json: { url: ctx.url, cv_adaptado: cvAdaptado, prompt, match_pct_previo: ctx.match_pct, ats_tip_previo: ctx.ats_tip } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1936,
+        16
+      ],
+      "id": "8d26f696-7763-44e7-83c3-6baf39c3f25c",
+      "name": "Prompt re-match"
+    },
+    {
+      "parameters": {
+        "jsCode": "const inp = $input.first().json;\nconst cfg = $('Config (API key + CVs base)').first().json;\nconst prompt = inp.prompt;\n\nlet texto = '';\nlet goErr = '';\ntry {\n  const resp = await this.helpers.httpRequest({\n    method: 'POST',\n    url: 'https://opencode.ai/zen/go/v1/messages',\n    headers: {\n      'x-api-key': cfg.opencode_api_key,\n      'anthropic-version': '2023-06-01',\n      'content-type': 'application/json'\n    },\n    body: {\n      model: 'minimax-m3',\n      max_tokens: 300,\n      messages: [{ role: 'user', content: prompt }]\n    },\n    json: true\n  });\n  texto = (resp.content || [])\n    .filter(c => c.type === 'text')\n    .map(c => c.text || '')\n    .join('')\n    .trim();\n  if (!texto) goErr = 'Go sin texto: ' + JSON.stringify(resp).slice(0, 200);\n} catch (e) {\n  goErr = (e.message || String(e)).slice(0, 200);\n}\n\nlet match_pct = (inp.match_pct_previo !== undefined && inp.match_pct_previo !== null && inp.match_pct_previo !== '') ? inp.match_pct_previo : '';\nlet ats_tip = inp.ats_tip_previo || '';\n\nif (texto) {\n  try {\n    const jm = texto.match(/\\{[\\s\\S]*\\}/);\n    const parsed = JSON.parse(jm ? jm[0] : texto);\n    if (parsed.match !== undefined && parsed.match !== null) {\n      match_pct = Number(parsed.match);\n      ats_tip = parsed.tip || '';\n    }\n  } catch (e) {\n    // no se pudo interpretar: dejamos el match/tip que la fila ya tenia\n  }\n} else if (match_pct === '') {\n  ats_tip = 'ERROR Go: ' + goErr;\n}\n\nreturn [{ json: { url: inp.url, cv_adaptado: inp.cv_adaptado, match_pct, ats_tip } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2304,
+        16
+      ],
+      "id": "91fb53e2-5807-46a9-9840-78302cd8e888",
+      "name": "Extraer nuevo match"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "b70af3a3-6862-4219-98bb-97e34f60510e",
+              "leftValue": "={{ Number($json.match_pct) || 0 }}",
+              "rightValue": "=75",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2672,
+        368
+      ],
+      "id": "61fad2d2-e3ae-463e-b7c8-74eac4db98ef",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $('Config (API key + CVs base)').first().json.telegram_bot_token }}/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  chat_id: $('Config (API key + CVs base)').first().json.telegram_chat_id,\n  text: '🚀 CV adaptado listo — ' + $json.match_pct + '% de match\\n\\n' + $json.titulo + ' - ' + $json.empresa + '\\n💡 ' + $json.ats_tip,\n  parse_mode: 'Markdown',\n  reply_markup: { inline_keyboard: [[{ text: '📄 Ver CV adaptado', url: $json.cv_adaptado }], [{ text: '🔗 Ver oferta', url: $json.url }]] }\n}) }}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "498206eb-cd5f-4f83-bbdb-2da094fa3364",
+      "name": "Avisar CV alto match",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2960,
+        352
+      ],
+      "notes": "Manda el insertText + todos los requests de formato en un solo batchUpdate."
+    },
+    {
+      "parameters": {
+        "jsCode": "// El trigger corre cada 10 min; si generar un CV (IA + Google Doc) tarda mas que eso,\n// una corrida nueva podria arrancar mientras la anterior sigue viva y duplicar CVs.\n// Guardamos un timestamp de 'corriendo desde' y nos salteamos esta corrida si todavia\n// esta vigente. Expira solo a los 20 min por si una corrida anterior quedo colgada\n// (ej: crasheo a mitad de camino) para no bloquear el workflow para siempre.\nconst sd = $getWorkflowStaticData('global');\nconst ahora = Date.now();\nif (sd.procesandoDesde && (ahora - sd.procesandoDesde) < 20 * 60 * 1000) {\n  return [];\n}\nsd.procesandoDesde = ahora;\nreturn $input.all();"
+      },
+      "id": "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e",
+      "name": "Evitar solapamiento",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        120,
+        0
+      ],
+      "notes": "Corta la corrida si la anterior todavia esta en curso (menos de 20 min desde que arranco)."
+    },
+    {
+      "parameters": {
+        "jsCode": "delete $getWorkflowStaticData('global').procesandoDesde;\nreturn $input.all();"
+      },
+      "id": "3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f",
+      "name": "Liberar lock",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        -200
+      ],
+      "notes": "Libera el lock cuando 'Loop ofertas' termino todo el batch (su salida 'done')."
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Config (API key + CVs base)": {
+      "main": [
+        [
+          {
+            "node": "Leer planilla",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leer planilla": {
+      "main": [
+        [
+          {
+            "node": "Filas marcadas con X",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filas marcadas con X": {
+      "main": [
+        [
+          {
+            "node": "Loop ofertas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop ofertas": {
+      "main": [
+        [
+          {
+            "node": "Liberar lock",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Traer descripcion de la oferta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Traer descripcion de la oferta": {
+      "main": [
+        [
+          {
+            "node": "Armar prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Armar prompt": {
+      "main": [
+        [
+          {
+            "node": "Extraer texto del CV",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer texto del CV": {
+      "main": [
+        [
+          {
+            "node": "Prompt re-match",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear Google Doc": {
+      "main": [
+        [
+          {
+            "node": "Armar formato del Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escribir CV en el Doc": {
+      "main": [
+        [
+          {
+            "node": "Armar link del Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Armar link del Doc": {
+      "main": [
+        [
+          {
+            "node": "Guardar link en la fila",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guardar link en la fila": {
+      "main": [
+        [
+          {
+            "node": "Loop ofertas",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Armar formato del Doc": {
+      "main": [
+        [
+          {
+            "node": "Escribir CV en el Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cada 10 minutos": {
+      "main": [
+        [
+          {
+            "node": "Evitar solapamiento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt re-match": {
+      "main": [
+        [
+          {
+            "node": "Extraer nuevo match",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer nuevo match": {
+      "main": [
+        [
+          {
+            "node": "Crear Google Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Avisar CV alto match",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evitar solapamiento": {
+      "main": [
+        [
+          {
+            "node": "Config (API key + CVs base)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "4ddfd962-4fb2-4409-9f11-46ad7827b2fd",
+  "meta": {
+    "instanceId": "8ccb0cabdf87c1b5c16e920357f8e8c749b0c25fd329ccb7bd6f773642b446e0"
+  },
+  "nodeGroups": [],
+  "id": "Awyid5ArZ8Su9qQU",
+  "tags": []
+}

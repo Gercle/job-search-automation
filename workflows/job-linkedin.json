@@ -1,0 +1,713 @@
+{
+  "name": "Job LinkedIn GO",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "20 15 * * 1-5"
+            }
+          ]
+        }
+      },
+      "id": "1466cd66-4034-4696-a080-6da713b1a2fa",
+      "name": "Disparador (L-V 15:00)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2336,
+        288
+      ],
+      "notes": "Corre de lunes a viernes a las 15hs. (si tu contenedor corre en UTC en vez de horario de Argentina, esta hora hay que pasarla a 18, no 15)."
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "perfiles",
+              "type": "array",
+              "value": "=[{\"perfil\": \"Administrativo\", \"cv\": \"CV ADMINISTRATIVO/franco-clerici-cv.pdf\", \"keywords\": [\"asistente administrativo\", \"administrativo\", \"recepcionista\", \"data entry\", \"control de stock\", \"atencion al cliente\", \"soporte administrativo\", \"auxiliar administrativo\"]}, {\"perfil\": \"Soporte Tecnico\", \"cv\": \"CV TECNICO/franco-clerici-cv.pdf\", \"keywords\": [\"soporte tecnico\", \"help desk\", \"mesa de ayuda\", \"service desk\", \"tecnico it\", \"soporte it\", \"sysadmin junior\"]}, {\"perfil\": \"Programacion\", \"cv\": \"CV PROGRAMACION/franco-clerici-cv.pdf\", \"keywords\": [\"desarrollador junior\", \"programador junior\", \"backend junior\", \"python\", \"sql\", \"node.js\", \"java junior\", \"trainee developer\"]}]",
+              "id": "fc9b40a2-5ad8-42b9-a95e-a061a735fcb0"
+            },
+            {
+              "name": "ubicacion",
+              "type": "string",
+              "value": "capital-federal",
+              "id": "1b17adb8-1b21-458a-b159-71b9feb25b6a"
+            },
+            {
+              "name": "excluir_regex",
+              "type": "string",
+              "value": "=\"(?i)(\\\\b2\\\\+?\\\\s*a[nñ]os|\\\\b3\\\\s*a[nñ]os|senior|ssr\\\\b|semi[- ]senior|c#|\\\\.net\\\\b|golang|\\\\bgo\\\\b|kubernetes|react native|qlik|\\\\bsap\\\\b|\\\\bodoo\\\\b|mainframe|racf|ingl[eé]s avanzado)\"",
+              "id": "d18e7739-99c4-4bad-90b7-a9597bb3431b"
+            },
+            {
+              "name": "cvs_base",
+              "type": "object",
+              "value": "={\"Administrativo\": \"Franco Clerici\\nAsistente Administrativo | Soporte y Gestión de Datos\\nfrancoclerici05@gmail.com | +54 11 6509 6263 | Almagro, CABA, Argentina\\nPERFIL\\nEstudiante de Ingeniería en Sistemas (UTN) y Técnico en Electrónica, con experiencia en tareas administrativas y de gestión\\nde datos. Manejo sólido de Excel, sistemas informáticos y organización de la información. Persona proactiva, ordenada y\\ncon excelente comunicación: fui convocado para dictar clases, lo que refleja mi facilidad para explicar, atender y trabajar\\ncon personas. Busco sumarme al área administrativa o de soporte de una empresa de tecnología para aportar desde el\\nprimer día y seguir creciendo profesionalmente.\\nEXPERIENCIA\\nAsistente de Inventario y Control de Stock\\nDASTEC S.R.L.\\n● Relevamiento y carga de productos mediante lectura de códigos de barra, registrando cada ítem en planillas de\\nExcel con precisión y atención al detalle.\\n● Organización y categorización del stock por tipo de producto, manteniendo la información ordenada y accesible.\\n● Tareas administrativas de control de inventario, asegurando consistencia entre el stock físico y los registros.\\nFORMACIÓN ACADÉMICA\\nIngeniería en Sistemas de Información 2024 – Presente\\nUniversidad Tecnológica Nacional (UTN) — cursando 2° año\\nDiplomatura en Bases de Datos Egresado 2025\\nUTN Centro de e-Learning\\nTécnico en Electrónica Egresado 2023\\nEscuela Técnica PIO IX\\nHABILIDADES\\n● Ofimática: Excel (planillas, carga y control de datos), Microsoft 365, Word.\\n● Sistemas: manejo de sistemas informáticos, Windows, bases de datos, nociones de gestión de stock/inventario.\\n● Personales: comunicación clara, proactividad, orden, atención al detalle, trabajo en equipo y trato con personas.\\n● Idiomas: Español (nativo). Inglés B2 (Upper-Intermediate).\\nINFORMACIÓN ADICIONAL\\n● Disponibilidad horaria de día (compatible con cursada nocturna 19–22 hs).\\n● Residencia: Almagro, CABA. Disponibilidad inmediata.\\n● Convocado para dictar clases, lo que refleja capacidad de comunicación y enseñanza.\", \"Soporte Tecnico\": \"Franco Clerici\\nSoporte Técnico IT | Help Desk\\nfrancoclerici05@gmail.com | linkedin.com/in/francoclerici | github.com/Gercle | Buenos Aires, Argentina\\nPERFIL\\nTécnico en Electrónica egresado con sólida base en hardware, diagnóstico de equipos y sistemas. Estudiante de Ingeniería\\nen Sistemas (UTN, 2° año) con conocimientos en Windows, Microsoft 365, bases de datos y programación. Orientado al\\nservicio al usuario, con capacidad analítica para resolver incidencias técnicas de forma ordenada y documentada. Busco mi\\nprimer rol en soporte IT para crecer dentro de un equipo de sistemas.\\nHABILIDADES TÉCNICAS\\n• Hardware: electrónica digital y analógica · diagnóstico y reparación de equipos · Técnico Electrónico egresado\\n• Sistemas Operativos: Windows 10/11 · Microsoft 365 · línea de comandos · Linux (introductorio, UTN)\\n• Redes: TCP/IP · conceptos de redes y sistemas distribuidos (UTN)\\n• Bases de datos: MySQL · SQL Server · SQLite · Diplomatura en Bases de Datos UTN 2025\\n• Programación: Python · Java · JavaScript · C++ · SQL\\n• Herramientas: Git · GitHub · Postman · GitHub Actions\\nEXPERIENCIA\\nAsistente de Inventario y Control de Stock\\nDASTEC S.R.L.\\n• Relevamiento y carga de productos mediante lectura de códigos de barra, registrando cada ítem en planillas de Excel.\\n• Organización y categorización del stock por tipo de producto, manteniendo la información ordenada y accesible.\\n• Control de inventario, asegurando consistencia entre el stock físico y los registros.\\nPROYECTOS RELEVANTES\\nAPI REST para Gestión Financiera — Node.js · MySQL · JWT · MVC (2025)\\nDiseño, desarrollo y documentación de una API backend con autenticación, manejo de errores y optimización de consultas\\nSQL.\\nEDUCACIÓN\\nIngeniería en Sistemas de Información — UTN (cursando 2° año)\\nDiplomatura en Bases de Datos — UTN Centro de e-Learning (2025)\\nTécnico en Electrónica — Escuela Técnica PIO IX (2023)\\nIDIOMAS\\nEspañol: Nativo — Inglés: B2 (Upper-Intermediate)\", \"Programacion\": \"Franco Clerici\\nDesarrollador Backend Junior | Estudiante de Ingeniería en Sistemas (UTN)\\nfrancoclerici05@gmail.com | linkedin.com/in/francoclerici | github.com/Gercle | Buenos Aires, Argentina\\nPERFIL\\nDesarrollador con base sólida en backend (Java, Node.js, Python), diseño de bases de datos relacionales y arquitectura de\\nsistemas. Construí una API financiera completa con autenticación JWT, gestión de transacciones y optimización de queries\\ncon mejora del 40% en tiempos de respuesta. Experiencia con automatización (GitHub Actions, Python), entornos cloud\\n(Docker/Linux) y seguridad en APIs. Estudiante de Ingeniería en Sistemas en UTN (2° año), con Diplomatura en Bases de\\nDatos completada (2025).\\nPROYECTOS\\nFinance API — Sistema de Gestión Financiera\\nNode.js · MySQL · JWT · Clean Architecture · MVC — 2025\\n• API REST para gestión financiera: usuarios, categorías, transacciones e ingresos con autenticación JWT y control de\\nacceso por roles.\\n• Optimización de queries mediante índices y relaciones normalizadas — mejora del 40% en tiempos de respuesta.\\n• Constraints de integridad referencial y validaciones multicapa para garantizar consistencia de datos.\\nMelimarket — Marketplace con control transaccional\\nNode.js · Java/Spring Boot · MySQL · React · JWT — 2025\\n• Control de concurrencia en órdenes: transacciones SQL con bloqueo optimista para evitar inconsistencias ante compras\\nsimultáneas.\\n• Worker asíncrono en Java/Spring Boot que procesa eventos de pagos y órdenes de forma desacoplada.\\n• Seguridad en APIs: JWT con roles, rate limiting, CORS restringido y pipeline CI/CD con GitHub Actions.\\nHABILIDADES TÉCNICAS\\n• Backend: Java · Spring Boot · Node.js · Express · Python · REST APIs · JWT · Clean Architecture\\n• Bases de datos: MySQL · SQL Server · Prisma ORM · optimización SQL · normalización (Diplomatura UTN 2025)\\n• Cloud & Automatización: Docker · Linux · GitHub Actions (CI/CD) · Python scripting · workers asincrónicos\\n• Lenguajes: Java · JavaScript · TypeScript · Python · C++ · SQL\\nEDUCACIÓN\\nIngeniería en Sistemas de Información — UTN (cursando 2° año, 2024–Presente)\\nDiplomatura en Bases de Datos — UTN Centro de e-Learning (2025)\\nTécnico en Electrónica — Escuela Técnica PIO IX (2023)\\nIDIOMAS\\nEspañol: Nativo — Inglés: B2 (Upper-Intermediate)\"}",
+              "id": "011be324-fceb-4c82-b96c-fdd61440b521"
+            },
+            {
+              "id": "35f55a5a-9d21-458d-b80a-2d938cd52039",
+              "name": "opencode_api_key",
+              "value": "={{ $env.OPENCODE_API_KEY }}",
+              "type": "string"
+            },
+            {
+              "id": "f1a2b3c4-linkedin-ubic",
+              "name": "ubicacion_linkedin",
+              "type": "string",
+              "value": "Buenos Aires, Argentina"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0d84d46c-3b0b-41cb-8ebe-3b7048e28636",
+      "name": "Config (perfiles + criterios)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1968,
+        288
+      ],
+      "notes": "3 perfiles, uno por cada CV que usa Franco (Administrativo / Soporte Tecnico / Programacion), cada uno con sus propias keywords. Se buscan los 3 perfiles en este sitio (los roles de los 3 tipos aparecen en todas las plataformas, no tiene sentido restringir un perfil a un solo sitio). El resultado en la planilla queda taggeado con que perfil matcheo y que CV mandar. Si cambias las keywords o el excluir_regex, replica el cambio en los otros workflows. La API key de OpenCode se lee de la variable de entorno OPENCODE_API_KEY (definila en tu .env / docker-compose, nunca la pegues aca). ubicacion_linkedin es el mismo criterio de zona que 'ubicacion' pero en formato texto libre, porque la API de LinkedIn espera 'Buenos Aires, Argentina' y no el slug 'capital-federal' que usa Computrabajo."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Explota perfiles[] x keywords[] en un item por combinacion (perfil, cv, keyword)\nconst cfg = $input.first().json;\nconst out = [];\nfor (const p of cfg.perfiles) {\n  for (const kw of p.keywords) {\n    out.push({ json: { perfil: p.perfil, cv: p.cv, keyword: kw, ubicacion: cfg.ubicacion, ubicacion_linkedin: cfg.ubicacion_linkedin, excluir_regex: cfg.excluir_regex } });\n  }\n}\nreturn out;"
+      },
+      "id": "ab5ee2bb-2992-4fcd-a790-6a7bc6eaad08",
+      "name": "Expandir perfiles x keywords",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1744,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a0711be7-d790-48cd-97eb-1d277495efee",
+      "name": "Loop (rate limit)",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1520,
+        288
+      ],
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "id": "7213c6c6-a254-46e3-8bcc-86b9745d4fc5",
+      "name": "Wait (evitar bloqueo IP)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1312,
+        288
+      ],
+      "webhookId": "373233b6-468e-4d25-a156-7d7eeb127b3b"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Seniority y stacks que no te sirven\nconst EXCLUIR_PUESTO = /(\\b2\\+?\\s*a[nñ]os|\\b3\\s*a[nñ]os|senior|\\bssr\\b|semi[- ]s(enio)?r\\b|c#|\\.net\\b|golang|\\bgo\\b|kubernetes|react native|qlik|\\bsap\\b|\\bodoo\\b|mainframe|racf|ingl[eé]s avanzado)/i;\n\n// Gastronomia, hoteleria, comercio, seguridad y tareas operativas\nconst EXCLUIR_RUBRO = /(cocin|chef|bachero|lavacopas|mozo|moza|camarer|gastronom|restaurant|parrilla|pizzer|panader|confiter|helader|cafeter|barista|bartender|catering|sushi|delivery|repartidor|cadete|comida r[aá]pida|fast ?food|mostaza|burger|mcdonald|starbucks|subway|\\bkfc\\b|hotel|hoteler|mucama|housekeeping|sal[oó]n de fiestas|encargado de local|repositor|cajer|g[oó]ndola|supermercado|verduler|carnicer|kiosco|maestranza|vigilador|vigilancia|personal de limpieza|auxiliar de limpieza|operario de limpieza)/i;\n\n// Solo CABA (descarta provincia y el resto del pais)\nconst ZONA_OK = /(capital federal|ciudad aut[oó]noma|\\bcaba\\b|buenos aires y alrededores)/i;\n\n// Solo publicaciones de las ultimas 24hs (vacio = LinkedIn, que no manda fecha)\nconst FECHA_OK = /^$|ahora|hace\\s+\\d+\\s*(minuto|hora)|ayer|hoy|hace\\s+1\\s*d[ií]a/i;\n\nconst out = [];\nfor (const item of $input.all()) {\n  const j = item.json;\n  if (!j.url) continue;\n  const texto = `${j.titulo} ${j.empresa} ${j.ubicacion}`;\n  if (EXCLUIR_PUESTO.test(texto)) continue;\n  if (EXCLUIR_RUBRO.test(texto)) continue;\n  if (!ZONA_OK.test(j.ubicacion || '')) continue;\n  if (!FECHA_OK.test((j.fecha_publicacion || '').trim())) continue;\n  out.push({ json: j });\n}\nreturn out;"
+      },
+      "id": "91e2a790-a80a-49ec-a557-219d8a2169a2",
+      "name": "Filtrar (descartar dealbreakers)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1232,
+        16
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0",
+          "mode": "list",
+          "cachedResultName": "n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Ofertas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "6ca2393f-0e3f-4592-9e5e-033076aefc25",
+      "name": "Leer URLs ya guardadas",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -880,
+        16
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aauUj87wyIwRfsy",
+          "name": "Google Sheets account"
+        }
+      },
+      "notes": "Misma planilla 'Ofertas' que usan los otros workflows (Computrabajo/Bumeran/Zonajobs/LinkedIn) -> dedupe entre todos."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Las ofertas vienen del nodo Filtrar, no de $input (que trae las filas de la planilla)\nconst filtradas = $('Filtrar (descartar dealbreakers)').all();\n\n// URLs que ya estan guardadas en la planilla\n// URLs ya guardadas con un match valido -> se saltean.\n// Las que quedaron con un error transitorio de la IA (ats_tip empieza con \"ERROR\")\n// NO se excluyen, para que la proxima corrida las vuelva a evaluar en vez de perderlas para siempre.\nconst existentes = new Set(\n  $('Leer URLs ya guardadas').all()\n    .filter(i => i.json.url && !String(i.json.ats_tip || '').startsWith('ERROR'))\n    .map(i => i.json.url)\n);\n\n// URLs ya vistas en ESTA misma corrida (evita duplicados cuando 2 keywords matchean la misma oferta)\nconst sd = $getWorkflowStaticData('global');\nif (!sd.urlsEstaCorrida) sd.urlsEstaCorrida = [];\nconst vistasEstaCorrida = new Set(sd.urlsEstaCorrida);\n\nconst nuevas = [];\nfor (const item of filtradas) {\n  const url = item.json.url;\n  if (!url) continue;\n  if (existentes.has(url) || vistasEstaCorrida.has(url)) continue;\n  vistasEstaCorrida.add(url);\n  nuevas.push(item);\n}\nsd.urlsEstaCorrida = Array.from(vistasEstaCorrida);\n\nreturn nuevas;"
+      },
+      "id": "643860a5-6683-4e15-af36-b096e33dda0b",
+      "name": "Descartar duplicados",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        16
+      ],
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "fecha_deteccion",
+              "type": "string",
+              "value": "={{ $now.format('yyyy-MM-dd HH:mm') }}",
+              "id": "b0e31598-45e5-43ac-9a27-9b0aad3dc4be"
+            },
+            {
+              "name": "estado",
+              "type": "string",
+              "value": "Pendiente",
+              "id": "b8175754-9ae4-468a-adf6-732546dbc433"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "dceb2914-e571-43eb-a0af-d830b43aa94d",
+      "name": "Agregar fecha de deteccion",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0",
+          "mode": "list",
+          "cachedResultName": "n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Ofertas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fuente": "={{ $json.fuente }}",
+            "titulo": "={{ $json.titulo }}",
+            "empresa": "={{ $json.empresa }}",
+            "ubicacion": "={{ $json.ubicacion }}",
+            "url": "={{ $json.url }}",
+            "keyword_busqueda": "={{ $json.keyword }}",
+            "fecha_deteccion": "={{ $json.fecha_deteccion }}",
+            "estado": "={{ $json.estado }}",
+            "match_pct": "={{ $json.match_pct }}",
+            "ats_tip": "={{ $json.ats_tip }}",
+            "perfil_sugerido": "={{ $json.perfil }}"
+          },
+          "matchingColumns": [
+            "url"
+          ],
+          "schema": [
+            {
+              "id": "notificado",
+              "displayName": "notificado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "perfil_sugerido",
+              "displayName": "perfil_sugerido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fuente",
+              "displayName": "fuente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "titulo",
+              "displayName": "titulo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "empresa",
+              "displayName": "empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ubicacion",
+              "displayName": "ubicacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "keyword_busqueda",
+              "displayName": "keyword_busqueda",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fecha_deteccion",
+              "displayName": "fecha_deteccion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fecha_postulacion",
+              "displayName": "fecha_postulacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "generar",
+              "displayName": "generar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "cv_adaptado",
+              "displayName": "cv_adaptado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "match_pct",
+              "displayName": "match_pct",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ats_tip",
+              "displayName": "ats_tip",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "451ab1c0-bd97-417a-b981-4c72ff1b5ff2",
+      "name": "Guardar en planilla",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aauUj87wyIwRfsy",
+          "name": "Google Sheets account"
+        }
+      },
+      "notes": "Columnas: perfil_sugerido, cv_sugerido, fuente, titulo, empresa, ubicacion, url, keyword_busqueda, fecha_deteccion. perfil_sugerido/cv_sugerido te dicen que CV de los 3 (Administrativo/Tecnico/Programacion) mandar para esa oferta."
+    },
+    {
+      "parameters": {
+        "url": "=https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={{ encodeURIComponent($json.keyword) }}&location={{ encodeURIComponent($json.ubicacion_linkedin) }}&f_TPR=r86400&start=0",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+            },
+            {
+              "name": "Accept",
+              "value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "es-AR,es;q=0.9,en;q=0.8"
+            },
+            {
+              "name": "Referer",
+              "value": "https://www.google.com/"
+            },
+            {
+              "name": "Upgrade-Insecure-Requests",
+              "value": "1"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "b778553e-2111-4b8d-b180-60905b59505c",
+      "name": "HTTP Linkedin(buscar)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1088,
+        288
+      ],
+      "notes": "Sitio server-rendered (no SPA). Probar solo (Execute node) antes de activar."
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Loop (rate limit)').item.json;\nconst html = $input.first().json.data || $input.first().json.body || '';\n\nfunction decodeEntities(str) {\n  return str\n    .replace(/&#x([0-9A-Fa-f]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)))\n    .replace(/&#(\\d+);/g, (_, d) => String.fromCharCode(parseInt(d, 10)))\n    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')\n    .replace(/&quot;/g, '\"').replace(/&#39;|&apos;/g, \"'\");\n}\nfunction stripTags(str) {\n  return decodeEntities(str.replace(/<[^>]*>/g, ' ').replace(/\\s+/g, ' ').trim());\n}\nfunction pick(block, re) {\n  const m = block.match(re);\n  return m ? stripTags(m[1]) : '';\n}\n\nconst out = [];\nfor (const block of html.split('<li>').slice(1)) {\n  const urlM = block.match(/href=\"(https:\\/\\/[^\"]*\\/jobs\\/view\\/[^\"]+)\"/);\n  if (!urlM) continue;\n  const titulo = pick(block, /base-search-card__title[^>]*>([\\s\\S]*?)</);\n  const empresa = pick(block, /hidden-nested-link[^>]*>([\\s\\S]*?)<\\/a>/)\n               || pick(block, /base-search-card__subtitle[^>]*>([\\s\\S]*?)</);\n  const ubicacion = pick(block, /job-search-card__location[^>]*>([\\s\\S]*?)</);\n  if (!titulo) continue;\n  out.push({ json: {\n    fuente: 'LinkedIn', titulo, empresa, ubicacion, fecha_publicacion: '',\n    url: decodeEntities(urlM[1]).split('?')[0],\n    perfil: ctx.perfil, cv: ctx.cv, keyword: ctx.keyword\n  }});\n}\nreturn out;"
+      },
+      "id": "a833e637-d8b9-47d4-942a-db2617050f50",
+      "name": "Parsear HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -864,
+        288
+      ],
+      "alwaysOutputData": true,
+      "notes": "Parser en JS puro (sin cheerio ni ninguna dependencia externa) -> funciona en cualquier instancia de n8n sin configuracion adicional. Selectores verificados contra HTML real. Si Computrabajo cambia su markup, este nodo va a devolver 0 items sin error -> pedime un HTML nuevo y lo ajusto."
+    },
+    {
+      "parameters": {
+        "jsCode": "$getWorkflowStaticData('global').urlsEstaCorrida = [];\nreturn $input.all();"
+      },
+      "id": "10d7604c-67c3-4eb4-b072-d95403bcd1e2",
+      "name": "Reset dedupe interna",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2144,
+        288
+      ],
+      "notes": "Limpia el set de URLs vistas en ESTA corrida (evita guardar la misma oferta 2 veces si matchea con 2 keywords distintas en la misma corrida)."
+    },
+    {
+      "parameters": {
+        "options": {},
+        "batchSize": 5
+      },
+      "id": "b40bf0f2-4a3d-475a-bb83-9bcb381aa4e4",
+      "name": "Loop match IA",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -224,
+        16
+      ],
+      "alwaysOutputData": false,
+      "notes": "Procesa 5 ofertas a la vez (batchSize) en paralelo via 'Match IA (paralelo)'. Subilo/bajalo segun cuanto te deje el tope de uso de OpenCode Go."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Procesa TODO el batch que entrega 'Loop match IA' en paralelo (Promise.all),\n// en vez de una oferta a la vez. Cada oferta: trae la descripcion, arma el prompt,\n// llama a OpenCode Go (con 1 reintento) y devuelve match_pct + ats_tip.\n// Si la IA falla las dos veces, nunca pisa un match_pct bueno que ya existiera.\nconst cfg = $('Config (perfiles + criterios)').first().json;\n\nasync function procesarOferta(ctx) {\n  const cvBase = (cfg.cvs_base && cfg.cvs_base[ctx.perfil]) || '';\n\n  // 1) Traer la descripcion completa de la oferta (si falla, seguimos solo con el titulo)\n  let raw = '';\n  try {\n    const resp = await this.helpers.httpRequest({\n      method: 'GET',\n      url: ctx.url,\n      headers: {\n        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',\n        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',\n        'Accept-Language': 'es-AR,es;q=0.9,en;q=0.8',\n        'Referer': 'https://www.google.com/',\n        'Upgrade-Insecure-Requests': '1',\n        'Connection': 'keep-alive'\n      }\n    });\n    raw = (resp && (resp.body || resp.data)) || resp || '';\n  } catch (e) {\n    raw = '';\n  }\n\n  let desc = String(raw)\n    .replace(/<script[\\s\\S]*?<\\/script>/gi, ' ')\n    .replace(/<style[\\s\\S]*?<\\/style>/gi, ' ')\n    .replace(/<[^>]*>/g, ' ')\n    .replace(/&nbsp;/g, ' ')\n    .replace(/&amp;/g, '&')\n    .replace(/\\s+/g, ' ')\n    .trim()\n    .slice(0, 4000);\n  if (desc.length < 100) desc = '(no se pudo leer la descripcion completa, evaluar solo con el titulo)';\n\n  const prompt = [\n    'Sos un evaluador de compatibilidad entre un CV y una oferta laboral.',\n    'Devolve SOLAMENTE un JSON valido, en una sola linea, sin markdown y sin backticks, con este formato exacto:',\n    '{\"match\": <numero entero 0-100>, \"tip\": \"<max 15 palabras: que keyword de la oferta conviene sumar o resaltar en el CV>\"}',\n    '',\n    '=== CV DEL CANDIDATO ===',\n    cvBase,\n    '',\n    '=== OFERTA ===',\n    'Puesto: ' + (ctx.titulo || ''),\n    'Empresa: ' + (ctx.empresa || ''),\n    'Descripcion: ' + desc\n  ].join('\\n');\n\n  // 2) Pedirle el match a la IA, con 1 reintento si la primera falla\n  let texto = '';\n  let goErr = '';\n  for (let intento = 0; intento < 2 && !texto; intento++) {\n    try {\n      const resp = await this.helpers.httpRequest({\n        method: 'POST',\n        url: 'https://opencode.ai/zen/go/v1/messages',\n        headers: {\n          'x-api-key': cfg.opencode_api_key,\n          'anthropic-version': '2023-06-01',\n          'content-type': 'application/json'\n        },\n        body: {\n          model: 'minimax-m3',\n          max_tokens: 300,\n          messages: [{ role: 'user', content: prompt }]\n        },\n        json: true\n      });\n      texto = (resp.content || [])\n        .filter(c => c.type === 'text')\n        .map(c => c.text || '')\n        .join('')\n        .trim();\n      if (!texto) goErr = 'Go sin texto: ' + JSON.stringify(resp).slice(0, 200);\n    } catch (e) {\n      goErr = (e.message || String(e)).slice(0, 200);\n    }\n  }\n\n  let match_pct = (ctx.match_pct !== undefined && ctx.match_pct !== null && ctx.match_pct !== '') ? ctx.match_pct : '';\n  let ats_tip = ctx.ats_tip || '';\n\n  if (texto) {\n    try {\n      const jm = texto.match(/\\{[\\s\\S]*\\}/);\n      const parsed = JSON.parse(jm ? jm[0] : texto);\n      if (parsed.match !== undefined && parsed.match !== null) {\n        match_pct = Number(parsed.match);\n        ats_tip = parsed.tip || '';\n      }\n    } catch (e) {\n      // no se pudo interpretar la respuesta: dejamos lo que ya habia\n    }\n  } else if (match_pct === '') {\n    ats_tip = 'ERROR Go: ' + goErr;\n  }\n\n  const out = { ...ctx };\n  out.match_pct = match_pct;\n  out.ats_tip = ats_tip;\n  return out;\n}\n\nconst items = $input.all().map(i => i.json);\nconst resultados = await Promise.all(items.map(ctx => procesarOferta.call(this, ctx)));\nreturn resultados.map(json => ({ json }));"
+      },
+      "id": "9f1e2d3c-4b5a-6c7d-8e9f-0a1b2c3d4e5f",
+      "name": "Match IA (paralelo)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        176
+      ],
+      "notes": "Reemplaza a 'Traer descripcion (match IA)' + 'Prompt match IA' + 'Extraer match score'. Procesa las ofertas del batch en paralelo (Promise.all) en vez de una por una -> el batchSize de 'Loop match IA' controla cuantas se procesan a la vez."
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Disparador (L-V 15:00)": {
+      "main": [
+        [
+          {
+            "node": "Reset dedupe interna",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config (perfiles + criterios)": {
+      "main": [
+        [
+          {
+            "node": "Expandir perfiles x keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Expandir perfiles x keywords": {
+      "main": [
+        [
+          {
+            "node": "Loop (rate limit)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop (rate limit)": {
+      "main": [
+        [
+          {
+            "node": "Filtrar (descartar dealbreakers)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait (evitar bloqueo IP)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait (evitar bloqueo IP)": {
+      "main": [
+        [
+          {
+            "node": "HTTP Linkedin(buscar)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrar (descartar dealbreakers)": {
+      "main": [
+        [
+          {
+            "node": "Leer URLs ya guardadas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leer URLs ya guardadas": {
+      "main": [
+        [
+          {
+            "node": "Descartar duplicados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descartar duplicados": {
+      "main": [
+        [
+          {
+            "node": "Loop match IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agregar fecha de deteccion": {
+      "main": [
+        [
+          {
+            "node": "Guardar en planilla",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Linkedin(buscar)": {
+      "main": [
+        [
+          {
+            "node": "Parsear HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parsear HTML": {
+      "main": [
+        [
+          {
+            "node": "Loop (rate limit)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reset dedupe interna": {
+      "main": [
+        [
+          {
+            "node": "Config (perfiles + criterios)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop match IA": {
+      "main": [
+        [
+          {
+            "node": "Agregar fecha de deteccion",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Match IA (paralelo)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Match IA (paralelo)": {
+      "main": [
+        [
+          {
+            "node": "Loop match IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "1c2ade84-345f-46f8-82b8-103ecaf93a89",
+  "meta": {
+    "instanceId": "8ccb0cabdf87c1b5c16e920357f8e8c749b0c25fd329ccb7bd6f773642b446e0"
+  },
+  "nodeGroups": [],
+  "id": "9Asob7m7ye2CQrNj",
+  "tags": []
+}
