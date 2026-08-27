@@ -245,7 +245,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const ctx = $('Loop ofertas').item.json;\nconst docId = $('Crear Google Doc').item.json.documentId;\nconst scoring = $('Extraer nuevo match').item.json;\nreturn [{ json: {\n  url: ctx.url,\n  titulo: ctx.titulo,\n  empresa: ctx.empresa,\n  cv_adaptado: 'https://docs.google.com/document/d/' + docId + '/edit',\n  match_pct: scoring.match_pct,\n  ats_tip: scoring.ats_tip\n}}];"
+        "jsCode": "const ctx = $('Loop ofertas').item.json;\nconst docId = $('Crear Google Doc').item.json.documentId;\nconst scoring = $('Extraer nuevo match').item.json;\nreturn [{ json: {\n  url: ctx.url,\n  titulo: ctx.titulo,\n  empresa: ctx.empresa,\n  cv_adaptado: 'https://docs.google.com/document/d/' + docId + '/edit',\n  match_pct: scoring.match_pct,\n  ats_tip: scoring.ats_tip,\n  posible_alucinacion: scoring.posible_alucinacion || ''\n}}];"
       },
       "id": "2a9846e1-8a7f-45cb-9ad8-bb0656dac242",
       "name": "Armar link del Doc",
@@ -501,7 +501,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const ctx = $('Loop ofertas').item.json;\nconst desc = $('Armar prompt').item.json.desc || '';\nconst cvAdaptado = $json.cv_adaptado || '';\n\nconst prompt = [\n  'Sos un evaluador de compatibilidad entre un CV y una oferta laboral.',\n  'Devolve SOLAMENTE un JSON valido, en una sola linea, sin markdown y sin backticks, con este formato exacto:',\n  '{\"match\": <numero entero 0-100>, \"tip\": \"<max 15 palabras: que keyword de la oferta conviene sumar o resaltar en el CV>\"}',\n  '',\n  '=== CV DEL CANDIDATO (version ya adaptada a esta oferta) ===',\n  cvAdaptado,\n  '',\n  '=== OFERTA ===',\n  'Puesto: ' + (ctx.titulo || ''),\n  'Empresa: ' + (ctx.empresa || ''),\n  'Descripcion: ' + desc\n].join('\\n');\n\nreturn [{ json: { url: ctx.url, cv_adaptado: cvAdaptado, prompt, match_pct_previo: ctx.match_pct, ats_tip_previo: ctx.ats_tip } }];"
+        "jsCode": "const ctx = $('Loop ofertas').item.json;\nconst desc = $('Armar prompt').item.json.desc || '';\nconst cvAdaptado = $json.cv_adaptado || '';\n\nconst prompt = [\n  'Sos un evaluador de compatibilidad entre un CV y una oferta laboral.',\n  'Devolve SOLAMENTE un JSON valido, en una sola linea, sin markdown y sin backticks, con este formato exacto:',\n  '{\"match\": <numero entero 0-100>, \"tip\": \"<max 15 palabras: que keyword de la oferta conviene sumar o resaltar en el CV>\"}',\n  '',\n  '=== CV DEL CANDIDATO (version ya adaptada a esta oferta) ===',\n  cvAdaptado,\n  '',\n  '=== OFERTA ===',\n  'Puesto: ' + (ctx.titulo || ''),\n  'Empresa: ' + (ctx.empresa || ''),\n  'Descripcion: ' + desc\n].join('\\n');\n\nreturn [{ json: { url: ctx.url, cv_adaptado: cvAdaptado, posible_alucinacion: $json.posible_alucinacion || '', prompt, match_pct_previo: ctx.match_pct, ats_tip_previo: ctx.ats_tip } }];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -514,7 +514,21 @@
     },
     {
       "parameters": {
-        "jsCode": "const inp = $input.first().json;\nconst cfg = $('Config (API key + CVs base)').first().json;\nconst prompt = inp.prompt;\n\nlet texto = '';\nlet goErr = '';\ntry {\n  const resp = await this.helpers.httpRequest({\n    method: 'POST',\n    url: 'https://opencode.ai/zen/go/v1/messages',\n    headers: {\n      'x-api-key': cfg.opencode_api_key,\n      'anthropic-version': '2023-06-01',\n      'content-type': 'application/json'\n    },\n    body: {\n      model: 'minimax-m3',\n      max_tokens: 300,\n      messages: [{ role: 'user', content: prompt }]\n    },\n    json: true\n  });\n  texto = (resp.content || [])\n    .filter(c => c.type === 'text')\n    .map(c => c.text || '')\n    .join('')\n    .trim();\n  if (!texto) goErr = 'Go sin texto: ' + JSON.stringify(resp).slice(0, 200);\n} catch (e) {\n  goErr = (e.message || String(e)).slice(0, 200);\n}\n\nlet match_pct = (inp.match_pct_previo !== undefined && inp.match_pct_previo !== null && inp.match_pct_previo !== '') ? inp.match_pct_previo : '';\nlet ats_tip = inp.ats_tip_previo || '';\n\nif (texto) {\n  try {\n    const jm = texto.match(/\\{[\\s\\S]*\\}/);\n    const parsed = JSON.parse(jm ? jm[0] : texto);\n    if (parsed.match !== undefined && parsed.match !== null) {\n      match_pct = Number(parsed.match);\n      ats_tip = parsed.tip || '';\n    }\n  } catch (e) {\n    // no se pudo interpretar: dejamos el match/tip que la fila ya tenia\n  }\n} else if (match_pct === '') {\n  ats_tip = 'ERROR Go: ' + goErr;\n}\n\nreturn [{ json: { url: inp.url, cv_adaptado: inp.cv_adaptado, match_pct, ats_tip } }];"
+        "jsCode": "// Chequeo anti-alucinacion: compara el CV adaptado contra el CV base + los datos de la\n// oferta, y marca palabras que no aparecen en ninguno de los dos. Heuristico por texto\n// (no otra llamada a IA) -> es una alerta para que REVISES antes de mandar el CV, no un\n// bloqueo automatico ni una prueba definitiva. Va a tener algun falso positivo con nombres\n// propios o conectores, eso es esperable.\nconst ctx = $('Loop ofertas').item.json;\nconst cvBase = ctx.cv_base || '';\nconst cvAdaptado = $input.first().json.cv_adaptado || '';\n\nfunction normalizar(txt) {\n  return String(txt).toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g, '');\n}\n\n// Mencionar el titulo/empresa/ubicacion de ESTA oferta no es alucinar, es contextualizar.\nconst permitido = normalizar([cvBase, ctx.titulo, ctx.empresa, ctx.ubicacion].filter(Boolean).join(' '));\n\n// Saca los marcadores de formato (TITULO:/CONTACTO:/SECCION:) antes de analizar el contenido\nconst contenido = cvAdaptado.replace(/^(TITULO|CONTACTO|SECCION):\\s*/gim, '');\n\n// Candidatos a \"afirmacion verificable\": palabras que arrancan con mayuscula (nombres propios,\n// tecnologias, herramientas, empresas), 3+ letras.\nconst TOKEN_RE = /\\b[A-ZÁÉÍÓÚÑ][A-Za-zÀ-ÿ0-9+.#/-]{2,}\\b/g;\nconst candidatos = new Set(contenido.match(TOKEN_RE) || []);\n\nconst IGNORAR = new Set([\n  'El','La','Los','Las','Un','Una','Con','Para','Por','En','De','Del','Y','O','Se','Su','Sus',\n  'Que','Como','Mas','Este','Esta','Estos','Estas','Entre','Sin','Sobre','Desde','Hasta','Durante',\n  'Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'\n]);\n\nconst sospechosos = [];\nfor (const token of candidatos) {\n  if (IGNORAR.has(token)) continue;\n  if (!permitido.includes(normalizar(token))) {\n    sospechosos.push(token);\n  }\n}\n\nreturn [{ json: { cv_adaptado: cvAdaptado, posible_alucinacion: sospechosos.length ? sospechosos.slice(0, 15).join(', ') : '' } }];"
+      },
+      "id": "7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d",
+      "name": "Chequeo anti-alucinacion",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1848,
+        96
+      ],
+      "notes": "Compara el CV adaptado contra el CV base (heuristico de texto, no otra llamada a IA) y arma 'posible_alucinacion' con lo que no matchea, para revisar antes de mandar. No bloquea nada solo."
+    },
+    {
+      "parameters": {
+        "jsCode": "const inp = $input.first().json;\nconst cfg = $('Config (API key + CVs base)').first().json;\nconst prompt = inp.prompt;\n\nlet texto = '';\nlet goErr = '';\ntry {\n  const resp = await this.helpers.httpRequest({\n    method: 'POST',\n    url: 'https://opencode.ai/zen/go/v1/messages',\n    headers: {\n      'x-api-key': cfg.opencode_api_key,\n      'anthropic-version': '2023-06-01',\n      'content-type': 'application/json'\n    },\n    body: {\n      model: 'minimax-m3',\n      max_tokens: 300,\n      messages: [{ role: 'user', content: prompt }]\n    },\n    json: true\n  });\n  texto = (resp.content || [])\n    .filter(c => c.type === 'text')\n    .map(c => c.text || '')\n    .join('')\n    .trim();\n  if (!texto) goErr = 'Go sin texto: ' + JSON.stringify(resp).slice(0, 200);\n} catch (e) {\n  goErr = (e.message || String(e)).slice(0, 200);\n}\n\nlet match_pct = (inp.match_pct_previo !== undefined && inp.match_pct_previo !== null && inp.match_pct_previo !== '') ? inp.match_pct_previo : '';\nlet ats_tip = inp.ats_tip_previo || '';\n\nif (texto) {\n  try {\n    const jm = texto.match(/\\{[\\s\\S]*\\}/);\n    const parsed = JSON.parse(jm ? jm[0] : texto);\n    if (parsed.match !== undefined && parsed.match !== null) {\n      match_pct = Number(parsed.match);\n      ats_tip = parsed.tip || '';\n    }\n  } catch (e) {\n    // no se pudo interpretar: dejamos el match/tip que la fila ya tenia\n  }\n} else if (match_pct === '') {\n  ats_tip = 'ERROR Go: ' + goErr;\n}\n\nreturn [{ json: { url: inp.url, cv_adaptado: inp.cv_adaptado, posible_alucinacion: inp.posible_alucinacion || '', match_pct, ats_tip } }];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -565,7 +579,7 @@
         "url": "=https://api.telegram.org/bot{{ $('Config (API key + CVs base)').first().json.telegram_bot_token }}/sendMessage",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({\n  chat_id: $('Config (API key + CVs base)').first().json.telegram_chat_id,\n  text: '🚀 CV adaptado listo — ' + $json.match_pct + '% de match\\n\\n' + $json.titulo + ' - ' + $json.empresa + '\\n💡 ' + $json.ats_tip,\n  parse_mode: 'Markdown',\n  reply_markup: { inline_keyboard: [[{ text: '📄 Ver CV adaptado', url: $json.cv_adaptado }], [{ text: '🔗 Ver oferta', url: $json.url }]] }\n}) }}",
+        "jsonBody": "={{ JSON.stringify({\n  chat_id: $('Config (API key + CVs base)').first().json.telegram_chat_id,\n  text: '🚀 CV adaptado listo — ' + $json.match_pct + '% de match\\n\\n' + $json.titulo + ' - ' + $json.empresa + '\\n💡 ' + $json.ats_tip + ($json.posible_alucinacion ? '\\n⚠️ Revisar antes de mandar (no aparece en tu CV base): ' + $json.posible_alucinacion : ''),\n  parse_mode: 'Markdown',\n  reply_markup: { inline_keyboard: [[{ text: '📄 Ver CV adaptado', url: $json.cv_adaptado }], [{ text: '🔗 Ver oferta', url: $json.url }]] }\n}) }}",
         "options": {
           "response": {
             "response": {
@@ -586,7 +600,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// El trigger corre cada 10 min; si generar un CV (IA + Google Doc) tarda mas que eso,\n// una corrida nueva podria arrancar mientras la anterior sigue viva y duplicar CVs.\n// Guardamos un timestamp de 'corriendo desde' y nos salteamos esta corrida si todavia\n// esta vigente. Expira solo a los 20 min por si una corrida anterior quedo colgada\n// (ej: crasheo a mitad de camino) para no bloquear el workflow para siempre.\nconst sd = $getWorkflowStaticData('global');\nconst ahora = Date.now();\nif (sd.procesandoDesde && (ahora - sd.procesandoDesde) < 20 * 60 * 1000) {\n  return [];\n}\nsd.procesandoDesde = ahora;\nreturn $input.all();"
+        "jsCode": "// El trigger corre cada 10 min; si generar un CV (IA + Google Doc) tarda mas que eso,\n// una corrida nueva podria arrancar mientras la anterior sigue viva y duplicar CVs.\n// Guardamos un timestamp de 'corriendo desde' y nos salteamos esta corrida si todavia\n// esta vigente. Expira solo a los 20 min por si una corrida anterior quedo colgada\n// (ej: crasheo a mitad de camino) para no bloquear el workflow para siempre.\nconst sd = $getWorkflowStaticData('global');\nconst ahora = Date.now();\nif (sd.procesandoDesde && (ahora - sd.procesandoDesde) < 20 * 60 * 1000) {\n  return [];\n}\n\n// Este workflow corre en un archivo separado de 'Job LinkedIn GO' y 'Jobs computrabajo GO',\n// asi que $getWorkflowStaticData('global') NO se comparte entre ellos -> el lock de arriba\n// no evita que los tres escriban a la misma Sheet (appendOrUpdate) al mismo tiempo. LinkedIn\n// dispara a las 15:20 y Computrabajo a las 15:30, L-V; nos salteamos esta corrida si cae\n// dentro de esa ventana para no chocar con ellos y dejar filas en blanco en la planilla.\nconst ahoraDate = new Date();\nconst dia = ahoraDate.getDay(); // 0 = domingo\nconst hora = ahoraDate.getHours();\nconst minuto = ahoraDate.getMinutes();\nconst esLaboral = dia >= 1 && dia <= 5;\nconst chocaConScraping = hora === 15 && minuto >= 15 && minuto <= 40;\nif (esLaboral && chocaConScraping) {\n  return [];\n}\n\nsd.procesandoDesde = ahora;\nreturn $input.all();"
       },
       "id": "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e",
       "name": "Evitar solapamiento",
@@ -596,7 +610,7 @@
         120,
         0
       ],
-      "notes": "Corta la corrida si la anterior todavia esta en curso (menos de 20 min desde que arranco)."
+      "notes": "Corta la corrida si la anterior todavia esta en curso (menos de 20 min desde que arranco), y tambien si cae entre las 15:15 y las 15:40 L-V para no escribir a la Sheet al mismo tiempo que LinkedIn (15:20) y Computrabajo (15:30)."
     },
     {
       "parameters": {
@@ -689,6 +703,17 @@
       ]
     },
     "Extraer texto del CV": {
+      "main": [
+        [
+          {
+            "node": "Chequeo anti-alucinacion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chequeo anti-alucinacion": {
       "main": [
         [
           {

@@ -1,0 +1,210 @@
+{
+  "name": "Metricas semanales GO",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 20 * * 0"
+            }
+          ]
+        }
+      },
+      "id": "349adf27-0bd8-44cf-9c61-2d441dcc2b16",
+      "name": "Disparador (Domingos 20:00)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        6640,
+        1200
+      ],
+      "notes": "Corre los domingos a las 20:00. Si tu contenedor corre en UTC en vez de horario de Argentina, esta hora hay que pasarla a 23:00 UTC, no 20:00."
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "telegram_bot_token",
+              "type": "string",
+              "value": "={{ $env.TELEGRAM_BOT_TOKEN }}",
+              "id": "e1e1a1a1-0001-4001-8001-000000000001"
+            },
+            {
+              "name": "telegram_chat_id",
+              "type": "string",
+              "value": "={{ $env.TELEGRAM_CHAT_ID }}",
+              "id": "e1e1a1a1-0001-4001-8001-000000000002"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "624ce55d-5b7b-4b40-964c-2272fe3c8ba1",
+      "name": "Config (Telegram)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        6864,
+        1200
+      ],
+      "notes": "El token del bot y el chat id se leen de las variables de entorno TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID (definidas en tu .env / docker-compose) -> nunca quedan pegadas en este JSON."
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0",
+          "mode": "list",
+          "cachedResultName": "n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Ofertas"
+        },
+        "options": {}
+      },
+      "id": "2f291280-90f6-45b1-b112-5bb754f280a4",
+      "name": "Leer planilla",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        7088,
+        1200
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "0aauUj87wyIwRfsy",
+          "name": "Google Sheets account"
+        }
+      },
+      "notes": "Lee TODAS las filas de la planilla (histórico completo, no solo la semana) para calcular tasas acumuladas — sin esto las métricas de pocos días son ruido estadístico."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Calcula metricas acumuladas del embudo: deteccion -> match alto -> postulacion -> entrevista,\n// mas si el CV adaptado por IA realmente correlaciona con mas entrevistas.\nconst rows = $input.all().map(i => i.json);\nconst total = rows.length;\n\nconst norm = (s) => String(s || '').trim().toLowerCase();\nconst estadoNorm = (r) => norm(r.estado);\nconst tieneCv = (r) => !!(r.cv_adaptado && String(r.cv_adaptado).trim());\n\nconst conMatch = rows.filter(r => r.match_pct !== undefined && r.match_pct !== '' && !isNaN(Number(r.match_pct)));\nconst altoMatch = conMatch.filter(r => Number(r.match_pct) >= 75);\n\nconst postuladas = rows.filter(r => estadoNorm(r) && estadoNorm(r) !== 'pendiente');\nconst entrevista = rows.filter(r => estadoNorm(r) === 'entrevista');\nconst descartado = rows.filter(r => estadoNorm(r) === 'descartado');\n\nconst altoMatchPostuladas = altoMatch.filter(r => estadoNorm(r) && estadoNorm(r) !== 'pendiente');\n\nconst conCv = rows.filter(tieneCv);\nconst conCvPostuladas = conCv.filter(r => estadoNorm(r) && estadoNorm(r) !== 'pendiente');\nconst conCvEntrevista = conCv.filter(r => estadoNorm(r) === 'entrevista');\n\nconst sinCvPostuladas = postuladas.filter(r => !tieneCv(r));\nconst sinCvEntrevista = sinCvPostuladas.filter(r => estadoNorm(r) === 'entrevista');\n\nconst pct = (num, den) => (den > 0 ? Math.round((num / den) * 1000) / 10 : null);\n\nconst avgMatch = (list) => {\n  const vals = list.map((r) => Number(r.match_pct)).filter((n) => !isNaN(n));\n  if (!vals.length) return null;\n  return Math.round((vals.reduce((a, b) => a + b, 0) / vals.length) * 10) / 10;\n};\n\nconst porFuente = {};\nfor (const r of rows) {\n  const f = r.fuente || 'sin fuente';\n  porFuente[f] = porFuente[f] || { total: 0, postuladas: 0 };\n  porFuente[f].total++;\n  if (estadoNorm(r) && estadoNorm(r) !== 'pendiente') porFuente[f].postuladas++;\n}\n\nreturn [{\n  json: {\n    total,\n    conMatch: conMatch.length,\n    altoMatch: altoMatch.length,\n    postuladas: postuladas.length,\n    entrevista: entrevista.length,\n    descartado: descartado.length,\n    conCv: conCv.length,\n    tasaAltoMatchAPostulacion: pct(altoMatchPostuladas.length, altoMatch.length),\n    tasaEntrevistaSobrePostuladas: pct(entrevista.length, postuladas.length),\n    tasaEntrevistaConCv: pct(conCvEntrevista.length, conCvPostuladas.length),\n    tasaEntrevistaSinCv: pct(sinCvEntrevista.length, sinCvPostuladas.length),\n    promedioMatchGeneral: avgMatch(conMatch),\n    promedioMatchEntrevista: avgMatch(entrevista),\n    porFuente,\n  },\n}];"
+      },
+      "id": "1f07b8f8-6d62-4c1e-a422-3437c8e507e1",
+      "name": "Calcular metricas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7312,
+        1200
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const m = $input.first().json;\n\nconst linea = (label, val, suf = '%') => (val === null || val === undefined ? `${label}: sin datos todavia` : `${label}: ${val}${suf}`);\n\nlet texto = `\\ud83d\\udcca *Metricas semanales \\u2014 busqueda laboral*\\n\\n`;\ntexto += `Total ofertas en la planilla: ${m.total}\\n`;\ntexto += `Con match calculado: ${m.conMatch} | Alto match (\\u226575%): ${m.altoMatch}\\n`;\ntexto += `Postuladas: ${m.postuladas} | En entrevista: ${m.entrevista} | Descartadas: ${m.descartado}\\n\\n`;\n\ntexto += `*Embudo*\\n`;\ntexto += `${linea('Alto match \\u2192 te postulaste', m.tasaAltoMatchAPostulacion)}\\n`;\ntexto += `${linea('Postulacion \\u2192 entrevista', m.tasaEntrevistaSobrePostuladas)}\\n\\n`;\n\ntexto += `*\\u00bfEl match score predice bien?*\\n`;\ntexto += `${linea('Match promedio (todas las scoreadas)', m.promedioMatchGeneral)}\\n`;\ntexto += `${linea('Match promedio (las que llegaron a entrevista)', m.promedioMatchEntrevista)}\\n\\n`;\n\ntexto += `*\\u00bfEl CV adaptado ayuda?*\\n`;\ntexto += `CV generado en ${m.conCv} oferta(s)\\n`;\ntexto += `${linea('Entrevista con CV adaptado', m.tasaEntrevistaConCv)}\\n`;\ntexto += `${linea('Entrevista sin CV adaptado', m.tasaEntrevistaSinCv)}\\n\\n`;\n\nconst fuentes = Object.entries(m.porFuente || {});\nif (fuentes.length) {\n  texto += `*Por fuente*\\n`;\n  for (const [fuente, d] of fuentes) {\n    texto += `${fuente}: ${d.total} detectadas, ${d.postuladas} postuladas\\n`;\n  }\n}\n\nreturn [{ json: { texto: texto.trim() } }];"
+      },
+      "id": "53612a17-6c88-46e7-824f-981e72617eb4",
+      "name": "Armar mensaje",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7536,
+        1200
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $('Config (Telegram)').first().json.telegram_bot_token }}/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ chat_id: $('Config (Telegram)').first().json.telegram_chat_id, text: $json.texto, parse_mode: 'Markdown' }) }}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "6ea037b4-212f-4f22-bdc5-7d67cb61817a",
+      "name": "Enviar Telegram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        7760,
+        1200
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Disparador (Domingos 20:00)": {
+      "main": [
+        [
+          {
+            "node": "Config (Telegram)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config (Telegram)": {
+      "main": [
+        [
+          {
+            "node": "Leer planilla",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leer planilla": {
+      "main": [
+        [
+          {
+            "node": "Calcular metricas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calcular metricas": {
+      "main": [
+        [
+          {
+            "node": "Armar mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Armar mensaje": {
+      "main": [
+        [
+          {
+            "node": "Enviar Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "a3d6f7c2-1b4e-4d9a-9c3f-8e2b1a7c6d5f",
+  "meta": {
+    "instanceId": "8ccb0cabdf87c1b5c16e920357f8e8c749b0c25fd329ccb7bd6f773642b446e0"
+  },
+  "nodeGroups": [],
+  "id": "MetricasSemanalesGO001",
+  "tags": []
+}

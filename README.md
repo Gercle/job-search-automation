@@ -9,7 +9,9 @@ Sistema self-hosted que automatiza la búsqueda de empleo de punta a punta: scra
 - **Guarda todo** en una Google Sheet que funciona como CRM personal: estado, fecha de detección, fecha de postulación, etc.
 - **Le pide a una IA** que compare cada oferta contra tu CV y devuelva un % de match + un tip concreto de qué keyword sumar para pasar el filtro ATS.
 - **Genera un CV adaptado** (Google Doc con formato real: negrita, secciones, bullets) para las ofertas que marcás manualmente, respetando una regla explícita de no inventar experiencia que no tengas.
+- **Chequea anti-alucinación**: después de adaptar el CV, compara el texto generado contra tu CV base y los datos de la oferta (heurística por texto, sin gastar otra llamada a IA) y marca cualquier término que no matchee para que lo revises antes de mandarlo.
 - **Te avisa por Telegram** las ofertas de alto match apenas aparecen, más un resumen diario.
+- **Mide el embudo real** (no solo volumen): tasa de alto-match → postulación, postulación → entrevista, y si el CV adaptado por IA realmente correlaciona con más entrevistas — resumen semanal por Telegram.
 
 ## Arquitectura
 
@@ -33,9 +35,12 @@ flowchart TD
 
     SHEET --> RES[Resumen diario<br/>15:35]
     RES --> TG2[Telegram: top ofertas del día]
+
+    SHEET --> MET[Métricas semanales<br/>domingos 20:00]
+    MET --> TG3[Telegram: tasas de conversión]
 ```
 
-Los 4 workflows son independientes entre sí y se coordinan únicamente a través de la Google Sheet, que actúa como base de datos compartida.
+Los 5 workflows son independientes entre sí y se coordinan únicamente a través de la Google Sheet, que actúa como base de datos compartida.
 
 ## Stack
 
@@ -54,7 +59,7 @@ Los 4 workflows son independientes entre sí y se coordinan únicamente a travé
    ```
 4. Entrá a `http://localhost:5678` (o tu dominio) y creá tu usuario.
 5. Configurá las credenciales de Google Sheets OAuth2 y Google Docs OAuth2 dentro de n8n (Settings → Credentials). Estas quedan guardadas encriptadas por n8n, nunca se exportan en los JSON de los workflows.
-6. Importá los 4 workflows de `workflows/` (Workflows → Import from File).
+6. Importá los 5 workflows de `workflows/` (Workflows → Import from File).
 7. En cada workflow, apuntá los nodos de Google Sheets/Docs a tu propia planilla y las credenciales que creaste en el paso 5.
 8. Activá los workflows.
 
@@ -67,8 +72,9 @@ Los 4 workflows son independientes entre sí y se coordinan únicamente a travé
 ├── workflows/
 │   ├── job-linkedin.json            # scraping LinkedIn + match IA
 │   ├── jobs-computrabajo.json       # scraping Computrabajo + match IA
-│   ├── generar-cv-adaptado.json     # CV adaptado por IA + Google Doc formateado
-│   └── resumen-diario-telegram.json # resumen diario de ofertas con alto match
+│   ├── generar-cv-adaptado.json     # CV adaptado por IA + Google Doc formateado + chequeo anti-alucinación
+│   ├── resumen-diario-telegram.json # resumen diario de ofertas con alto match
+│   └── metricas-semanales.json      # tasas de conversión del embudo, resumen semanal
 └── README.md
 ```
 
@@ -77,6 +83,13 @@ Los 4 workflows son independientes entre sí y se coordinan únicamente a travé
 - El scraping usa parsers propios en JS (sin dependencias) contra el HTML público de cada sitio; si cambian su markup, el nodo correspondiente empieza a devolver 0 resultados sin tirar error — es un punto conocido de mantenimiento.
 - Pensado para uso personal, respetando un intervalo prudente entre requests para no generar carga sobre los sitios de origen.
 - Los 3 secrets (`OPENCODE_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`) se leen desde variables de entorno en runtime (`$env.*` dentro de los Code nodes) — nunca están hardcodeados en los workflows exportados.
+- Los workflows que escriben a la Sheet usan `Append or Update` de Google Sheets, que no es seguro ante escrituras concurrentes: si corrés dos workflows a mano al mismo tiempo (por ejemplo para testing) pueden pisarse y dejar filas en blanco. En la corrida automática programada no pasa, porque los triggers están espaciados a propósito.
+
+## Roadmap
+
+- Sumar más fuentes de búsqueda (Indeed, OCC) — Bumeran y Zonajobs quedaron descartados porque su API está protegida por Cloudflare Bot Management.
+- Nota de personalización corta por oferta (contexto real, no genérico) antes de postularse.
+- Lock compartido entre workflows para eliminar por completo el riesgo de escritura concurrente en la Sheet.
 
 ## Licencia
 
