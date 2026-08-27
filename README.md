@@ -60,8 +60,28 @@ Los 5 workflows son independientes entre sí y se coordinan únicamente a travé
 4. Entrá a `http://localhost:5678` (o tu dominio) y creá tu usuario.
 5. Configurá las credenciales de Google Sheets OAuth2 y Google Docs OAuth2 dentro de n8n (Settings → Credentials). Estas quedan guardadas encriptadas por n8n, nunca se exportan en los JSON de los workflows.
 6. Importá los 5 workflows de `workflows/` (Workflows → Import from File).
-7. En cada workflow, apuntá los nodos de Google Sheets/Docs a tu propia planilla y las credenciales que creaste en el paso 5.
+7. Personalizá cada workflow con tus propios datos — ver la sección [Configuración](#configuración-qué-personalizar) de abajo, es el paso que más se salta y el que rompe todo si no se hace.
 8. Activá los workflows.
+
+## Configuración: qué personalizar
+
+Los JSON de `workflows/` vienen con **mi** planilla, **mi** CV y **mis** criterios de búsqueda hardcodeados (todo lo que no es secret). Si los importás tal cual, van a intentar escribir en una Google Sheet a la que no tenés acceso y buscar con un CV que no es el tuyo. Esto es lo que hay que cambiar:
+
+1. **Creá tu propia Google Sheet** con una hoja llamada `Ofertas` y esta fila de encabezados exacta (respetá el orden y los nombres, se usan tal cual en los nodos):
+
+   ```
+   fuente | titulo | empresa | ubicacion | url | keyword_busqueda | fecha_deteccion | fecha_postulacion | generar | cv_adaptado | posible_alucinacion | estado | match_pct | ats_tip | perfil_sugerido | notificado
+   ```
+
+2. **Reemplazá el `documentId`** en todos los nodos de Google Sheets (`Leer URLs ya guardadas`, `Guardar en planilla`, `Leer planilla`, `Marcar notificado`, y los del workflow de CV adaptado) por el ID de tu propia Sheet — una vez conectada tu credencial OAuth2 propia (paso 5), abrí cada nodo y seleccioná tu planilla desde el dropdown "Document" (modo "From list"), no dejes el ID pegado a mano.
+
+3. **Reemplazá `cvs_base`** en los nodos `Config (perfiles + criterios)` (LinkedIn y Computrabajo) y `Config (API key + CVs base)` (CV adaptado) por el texto plano de tu propio CV. Es un objeto tipo `{"NombrePerfil": "texto completo del CV..."}` — podés tener 1 solo perfil o varios, como yo.
+
+4. **Reemplazá `perfiles`** (array con `perfil`, `cv`, `keywords`) en esos mismos nodos por tus propios perfiles de búsqueda y palabras clave.
+
+5. **Ajustá `ubicacion` / `ubicacion_linkedin`** a tu ciudad, y revisá los regex `EXCLUIR_PUESTO`, `EXCLUIR_RUBRO` y `ZONA_OK` dentro del nodo `Filtrar (descartar dealbreakers)` de cada workflow de scraping — son los criterios de descarte (seniority, rubro, zona), están en criollo pensados para mi búsqueda y probablemente no te sirvan tal cual.
+
+6. **Los triggers de cron** (`Disparador...`, `Cada 10 minutos`) están en horario de Argentina — si tu VPS corre en otro huso horario, ajustá las expresiones cron o el `GENERIC_TIMEZONE`/`TZ` del `docker-compose.yml`.
 
 ## Estructura del repo
 
