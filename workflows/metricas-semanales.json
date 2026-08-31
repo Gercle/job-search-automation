@@ -56,10 +56,10 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0",
+          "value": "TU_GOOGLE_SHEET_ID_AQUI",
           "mode": "list",
           "cachedResultName": "n8n",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1l2EwTTFT02h7-e3tQuxfBs1EKOIxD13aDBnsBqiw6H0/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/TU_GOOGLE_SHEET_ID_AQUI/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
